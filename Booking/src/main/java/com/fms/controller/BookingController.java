@@ -96,10 +96,10 @@ public class BookingController {
 		     }
 		
 	     @PostMapping(value="/addPassenger/{bid}")
-	     public String addPassenger(@RequestBody List<Passenger> p, @PathVariable String bid)
+	     public List<Passenger> addPassenger(@RequestBody List<Passenger> p, @PathVariable String bid)
 	     {
-	    	 bookingservice.addPassenger(p,bid);
-	    	return "booking done successfully";
+	    	List<Passenger> pass= bookingservice.addPassenger(p,bid);
+	    	return pass;
 	    	 
 	     }
 	     
@@ -121,5 +121,10 @@ public class BookingController {
 	     {
 	    	 return bookingservice.viewAirport();
 	     }
+	     
+	 	@GetMapping(value = "/checkavailability/{noofpassengers}/{availableseats}/{scheduledflightid}")
+		public String checkavailability(@PathVariable int noofpassengers, @PathVariable int availableseats, @PathVariable int scheduledflightid) {
+			return bookingservice.checkavailability(noofpassengers,availableseats,scheduledflightid);
+		}
 
 }

@@ -1,8 +1,6 @@
 package com.fms.service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -13,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.fms.dto.Airport;
 import com.fms.dto.Flight;
 import com.fms.dto.Scheduledflight;
+import com.fms.exception.FlightNotFoundException;
 import com.fms.exception.IdNotFoundException;
 import com.fms.repository.AirportRepository;
 import com.fms.repository.FlightRepository;
@@ -32,7 +31,12 @@ public class ScheduledflightService implements ScheduledflightServiceI  {
 	 
 	 @Transactional
 	public Scheduledflight addScheduledflight(Scheduledflight schedule, int flightnumber, String source, String destination) {
-		
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-dd-MM");
+		try {
+		 sdf.parse(schedule.getDate1());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		Flight f=fdao.findById(flightnumber).get();
     	Airport a=airportdao.findByairportName(source);
     	Airport a1=airportdao.findByairportName(destination);
@@ -44,7 +48,6 @@ public class ScheduledflightService implements ScheduledflightServiceI  {
     		sfg.setFlight(f);
     		sfg.setSourceairport(a);
     		sfg.setDestinationairport(a1);
-    		System.out.println(sfg);
     		return sfg;
     	}
     	else throw new IdNotFoundException("Flight cannot be Scheduled");
@@ -53,18 +56,6 @@ public class ScheduledflightService implements ScheduledflightServiceI  {
 	 @Transactional
 	public Scheduledflight updateScheduleFlight(Scheduledflight schedule, int flightnumber, String source,String destination) {
 		Scheduledflight fs=fsdao.findById(schedule.getScheduledflightid()).get();
-    /*	if(fs!=null)
-    	{
-    		fs.setScheduledflightid(schedule.getScheduledflightid());
-    		fs.setAvailableSeats(schedule.getAvailableSeats());
-    		fs.setTicketcost(schedule.getTicketcost());
-    		fs.setFlight(schedule.getFlight());
-    		fs.setSourceairport(schedule.getSourceairport());
-    		fs.setDestinationairport(schedule.getDestinationairport());
-    		fs.setArrivaltime(schedule.getArrivaltime());
-    		fs.setDeparturetime(schedule.getDeparturetime());
-    	}
-    	return fsdao.save(schedule);*/
 		Flight f=fdao.findById(flightnumber).get();
     	Airport a=airportdao.findByairportName(source);
     	Airport a1=airportdao.findByairportName(destination);
@@ -79,7 +70,7 @@ public class ScheduledflightService implements ScheduledflightServiceI  {
     		System.out.println(sfg);
     		return sfg;
     	}
-    	else throw new IdNotFoundException("Flight cannot be Scheduled");
+    	else throw new FlightNotFoundException("Flight cannot be Scheduled");
     
     }
 	

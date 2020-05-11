@@ -1,6 +1,8 @@
 package com.fms.service;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,46 +17,16 @@ public class UserService implements UserServiceI
 
 	public void setUdao(UserRepository udao) { this.udao=udao; }
      
-     @Override
-     public Userdata viewUser(String username)
-     {
-    	 return udao.findById(username).get();
-     }
-     
-     @Override
-     public List<Userdata> viewUser()
-     {
-    	 return udao.findAll();
-     }
-     
-     @Override
+
+     @Transactional
      public Userdata addUser(Userdata user)
      {
     	 return udao.save(user);
      }
      
-     @Override
-     public Userdata updateUser(Userdata u)
-     {
-    		Userdata ud=udao.findById(u.getUserid()).get();
-    		if(ud!=null)
-    		{
-    			ud.setUsername(u.getUsername());
-    			ud.setUserpassword(u.getUserpassword());
-    			ud.setUserphone(u.getUserphone());
-    			ud.setUseremail(u.getUseremail());
-    		}
-    		return udao.save(ud);
-    	 
-     }
-     
-     @Override
-     public void deleteUser(int userid)
-     {
-    	  udao.deleteById(userid);
-     }
+
     
-     @Override
+     @Transactional
      public String LoginUser(Userdata u)
      {
     	

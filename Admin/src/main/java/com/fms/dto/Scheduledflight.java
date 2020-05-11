@@ -3,9 +3,7 @@ package com.fms.dto;
 
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,10 +16,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
-import org.springframework.format.annotation.DateTimeFormat;
-
-
-
 
 @Entity
 @Table(name="Scheduledflight")

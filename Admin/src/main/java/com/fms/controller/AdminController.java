@@ -20,6 +20,7 @@ import com.fms.dto.Airport;
 import com.fms.dto.Flight;
 import com.fms.dto.Scheduledflight;
 import com.fms.dto.Userdata;
+import com.fms.exception.FlightNotFoundException;
 import com.fms.exception.IdNotFoundException;
 import com.fms.service.FlightService;
 import com.fms.service.ScheduledflightService;
@@ -62,7 +63,13 @@ public class AdminController {
     
 	@PostMapping("/addflight")
 	public String addFlight(@RequestBody Flight flight) {
-	return flightService.addFlight(flight);
+		Flight f=flightService.addFlight(flight);
+		if(f!=null)
+		{
+			return "Flight details are stored";
+		}
+		else
+			throw new FlightNotFoundException("Invalid flight details");
 	}
 	
 	@GetMapping(value="/getAllFlight",produces="application/json")
@@ -78,6 +85,7 @@ public class AdminController {
 	 @DeleteMapping("/deleteFlight/{flightnumber}")
      public String deleteFlight(@PathVariable int flightnumber)
      {
+		 System.out.println(flightnumber);
     	 flightService.deleteFlight(flightnumber);
     	 return "Flight Details Deleted";
      }
@@ -94,7 +102,7 @@ public class AdminController {
      public ResponseEntity<String> addScheduledFlight(@RequestBody Scheduledflight sf, @PathVariable int flightnumber,@PathVariable String sourceairport, @PathVariable String destinationairport)
      {
     	 Scheduledflight sfg1= scheduleservice.addScheduledflight(sf, flightnumber,sourceairport,destinationairport);
-    	 System.out.println(sfg1);
+    	 
     		if (sfg1 == null) {
     			throw new IdNotFoundException("Enter Valid Id");
     		} else {
@@ -112,6 +120,7 @@ public class AdminController {
 	 @DeleteMapping("/deletescheduledflight/{scheduledflightid}")
 	 public String deleteScheduledFlight(@PathVariable int scheduledflightid)
      {
+		 System.out.println(scheduledflightid);
     	 scheduleservice.deleteScheduledFlight(scheduledflightid);
     	 return "Scheduled flight Details Deleted";
      }
@@ -131,9 +140,10 @@ public class AdminController {
 	
 	 
 	 @PostMapping("/Addairport")
-		public Airport addAirport(@RequestBody Airport airport) {
+		public String addAirport(@RequestBody Airport airport) {
 		 
-			return scheduleservice.addAirport(airport);
+			 scheduleservice.addAirport(airport);
+			 return "Airport added successfully";
 			
 		}
 	 

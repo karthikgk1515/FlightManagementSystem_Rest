@@ -19,16 +19,13 @@ public class Userdata {
 	
 	@Column(name="user_password")
 	private String userpassword;
-	@Column(name="user_phone")
-	private int userphone;
+	@Column(name="user_phone",length=10)
+	private String userphone;
 	@Column(name="user_email")
 	private String useremail;
 	
 	
-
-	
-
-	public Userdata(int userid, String usertype, String username, String userpassword, int userphone, String useremail) {
+	public Userdata(int userid, String usertype, String username, String userpassword, String userphone, String useremail) {
 		
 		this.userid = userid;
 		this.usertype = usertype;
@@ -75,11 +72,11 @@ public class Userdata {
 		this.userpassword = userpassword;
 	}
 
-	public int getUserphone() {
+	public String getUserphone() {
 		return userphone;
 	}
 
-	public void setUserphone(int userphone) {
+	public void setUserphone(String userphone) {
 		this.userphone = userphone;
 	}
 

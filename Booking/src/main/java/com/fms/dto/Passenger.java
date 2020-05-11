@@ -1,6 +1,7 @@
 package com.fms.dto;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,17 +10,22 @@ import javax.persistence.Table;
 @Table(name="Passenger")
 public class Passenger{
 	@Id
-	private int passengerUIN;
+	@Column(name="passengeruin",length=12)
+	private String passengerUIN;
+	@Column(name="passengername")
 	private String passengername;
+	@Column(name="passengerage",length=2)
 	private int passengerage;
-	private int pnrnumber;
+	@Column(name="pnrnumber",length=10)
+	private String pnrnumber;
+	@Column(name="passengergender")
 	private String passengergender;
 	
 	public Passenger() {
 		
 	}
 
-	public Passenger(int pnrnumber, String passengername, int passengerage, int passengerUIN,  String passengergender) {
+	public Passenger(String pnrnumber, String passengername, int passengerage, String passengerUIN,  String passengergender) {
 		
 		this.pnrnumber = pnrnumber;
 		this.passengername = passengername;
@@ -28,11 +34,11 @@ public class Passenger{
 		this.passengergender=passengergender;
 	}
 
-	public int getPnrnumber() {
+	public String getPnrnumber() {
 		return pnrnumber;
 	}
 
-	public void setPnrnumber(int pnrnumber) {
+	public void setPnrnumber(String pnrnumber) {
 		this.pnrnumber = pnrnumber;
 	}
 
@@ -52,11 +58,11 @@ public class Passenger{
 		this.passengerage = passengerage;
 	}
 
-	public int getPassengerUIN() {
+	public String getPassengerUIN() {
 		return passengerUIN;
 	}
 
-	public void setPassengerUIN(int passengerUIN) {
+	public void setPassengerUIN(String passengerUIN) {
 		this.passengerUIN = passengerUIN;
 	}
 

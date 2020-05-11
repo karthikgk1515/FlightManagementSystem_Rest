@@ -124,14 +124,14 @@ public List<Booking> viewBooking() {
 	     public List<Passenger> addPassenger(List<Passenger> passenger, String bookingid)
 	     {
 	    	 Booking b=bdao.findById(bookingid).get();
-	    	 System.out.println(bookingid);
+	    	 System.out.println("hello"+b);
 	    	 if(b==null)
 	    		 return null;
 	    	 if(b.getPassenger().isEmpty())
 	    	 {
-	    		 System.out.println(passenger);
 	    		 List<Passenger> p= pdao.saveAll(passenger);
 	    		 b.setPassenger(p);
+	    		 System.out.println(b);
 	    		 return p;
 	    	 }
 	    	 else
@@ -161,4 +161,16 @@ public List<Booking> viewBooking() {
 			return booking;
 	    }
 	     
+		@Transactional
+		public String checkavailability(int noofpassengers, int availableseats,int scheduledflightid)
+		{
+			if(noofpassengers<=availableseats)
+			{
+				availableseats-=noofpassengers;
+				sfdao.updateseats(scheduledflightid,availableseats);
+				return "seats";
+			}
+			else 
+				return "no seats";
+		}
 }

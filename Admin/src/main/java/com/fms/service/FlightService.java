@@ -15,9 +15,8 @@ public class FlightService implements FlightServiceI {
 	private FlightRepository flightDao;
 	
 
-	public String addFlight(Flight flight) {
-		flightDao.save(flight);
-		 return "Flight details are added";
+	public Flight addFlight(Flight flight) {
+		return flightDao.save(flight);
 		
 	}
 
@@ -32,7 +31,6 @@ public class FlightService implements FlightServiceI {
 				flightDao.save(flight);
 				return "updated flight";
 			}else{
-				
 				return "Id not exits";
 			}
 		
