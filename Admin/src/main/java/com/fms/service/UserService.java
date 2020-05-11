@@ -21,6 +21,7 @@ public class UserService implements UserServiceI
      @Transactional
      public Userdata addUser(Userdata user)
      {
+    	 user.setUsertype("customer");
     	 return udao.save(user);
      }
      
