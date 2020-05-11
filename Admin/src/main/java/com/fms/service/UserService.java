@@ -30,19 +30,19 @@ public class UserService implements UserServiceI
      @Transactional
      public String LoginUser(Userdata u)
      {
-    	
+    	String flag=null;
      	String usertype=udao.findByusertype(u.getUsername(),u.getUserpassword());
+     	 if(usertype==null)
+     		 return "invalid";
      	if(usertype.equalsIgnoreCase("admin"))
      			{
-     				 return "admin";
+     				 flag="admin";
      			}
      	else if(usertype.equalsIgnoreCase("customer"))
      			{
-     			 return "customer";
+     			 flag="customer";
      			}
-     	else
-     		 return "invalid";
-     
+     	return flag;
      }
      
   
