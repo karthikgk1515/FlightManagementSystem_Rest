@@ -1,11 +1,9 @@
 package com.fms.controller;
 
-import java.time.LocalDate;
-import java.util.Date;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +19,6 @@ import com.fms.dto.Scheduledflight;
 import com.fms.dto.Userdata;
 import com.fms.dto.Airport;
 import com.fms.dto.Passenger;
-import com.fms.repository.ScheduledflightRepository;
 import com.fms.service.BookingServiceimpl;
 
 @RestController
@@ -122,9 +119,14 @@ public class BookingController {
 	    	 return bookingservice.viewAirport();
 	     }
 	     
-	 	@GetMapping(value = "/checkavailability/{noofpassengers}/{availableseats}/{scheduledflightid}")
-		public String checkavailability(@PathVariable int noofpassengers, @PathVariable int availableseats, @PathVariable int scheduledflightid) {
-			return bookingservice.checkavailability(noofpassengers,availableseats,scheduledflightid);
+	     @GetMapping(value = "/checkavailability/{noofpassengers}/{availableseats}/{scheduledflightid}")
+			public String checkavailability(@PathVariable int noofpassengers, @PathVariable int availableseats, @PathVariable int scheduledflightid) {
+				return bookingservice.checkavailability(noofpassengers,availableseats,scheduledflightid);
+			}
+	 	
+	 	@PutMapping(value = "/updateseats/{noofpassengers}")
+		public void updateseats(@RequestBody Booking deletebooking ,@PathVariable int noofpassengers) {
+			 bookingservice.updateseats(deletebooking,noofpassengers);
 		}
 
 }

@@ -11,6 +11,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Airport")
 public class Airport implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="airport_code")
 	private String airportCode;

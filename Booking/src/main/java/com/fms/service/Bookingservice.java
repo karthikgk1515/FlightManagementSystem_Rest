@@ -1,7 +1,6 @@
 package com.fms.service;
 
-import java.time.LocalDate;
-import java.util.Date;
+
 import java.util.List;
 
 import com.fms.dto.Airport;
@@ -26,4 +25,6 @@ public interface Bookingservice {
     public void deletePassenger(int bookingid);
     public Userdata viewUser(String username);
     public List<Airport> viewAirport();
+	public String checkavailability(int noofpassengers, int availableseats,int scheduledflightid);
+    public String updateseats(Booking deletebooking,int noofpassengers);
 }

@@ -1,10 +1,6 @@
 package com.fms.service;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -12,11 +8,11 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fms.dto.Airport;
 import com.fms.dto.Booking;
+import com.fms.dto.Passenger;
 import com.fms.dto.Scheduledflight;
 import com.fms.dto.Userdata;
-import com.fms.dto.Airport;
-import com.fms.dto.Passenger;
 import com.fms.exception.IdNotFoundException;
 import com.fms.repository.AirportRepository;
 import com.fms.repository.BookingRepository;
@@ -172,5 +168,15 @@ public List<Booking> viewBooking() {
 			}
 			else 
 				return "no seats";
+		}
+	
+		@Transactional
+		public String updateseats(Booking deletebooking,int noofpassengers)
+		{
+			int availableseats=deletebooking.getScheduledflight().getAvailableSeats();
+			int scheduledflightid=deletebooking.getScheduledflight().getScheduledflightid();
+				availableseats+=noofpassengers;
+				sfdao.updateseats(scheduledflightid,availableseats);
+			return "done";
 		}
 }

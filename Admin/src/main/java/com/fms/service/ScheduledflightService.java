@@ -56,20 +56,23 @@ public class ScheduledflightService implements ScheduledflightServiceI  {
 	 @Transactional
 	public Scheduledflight updateScheduleFlight(Scheduledflight schedule, int flightnumber, String source,String destination) {
 		Scheduledflight fs=fsdao.findById(schedule.getScheduledflightid()).get();
+		if(fs!=null) {
 		Flight f=fdao.findById(flightnumber).get();
     	Airport a=airportdao.findByairportName(source);
     	Airport a1=airportdao.findByairportName(destination);
+    	Scheduledflight sfg=fsdao.save(schedule);
     	if(f==null||a==null||a1==null)
     		return null;
     	if(schedule.getFlight()==null||schedule.getSourceairport()==null||schedule.getDestinationairport()==null)
     	{
-    		Scheduledflight sfg=fsdao.save(schedule);
+    		
     		sfg.setFlight(f);
     		sfg.setSourceairport(a);
     		sfg.setDestinationairport(a1);
     		System.out.println(sfg);
-    		return sfg;
+    		
     	}
+    	return sfg;}
     	else throw new FlightNotFoundException("Flight cannot be Scheduled");
     
     }
