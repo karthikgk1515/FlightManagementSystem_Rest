@@ -106,7 +106,7 @@ public class AdminController {
     		if (sfg1 == null) {
     			throw new IdNotFoundException("Enter Valid Id");
     		} else {
-    			return new ResponseEntity<String>("flight details added successfully", new HttpHeaders(), HttpStatus.OK);
+    			return new ResponseEntity<String>("Flight details added successfully", new HttpHeaders(), HttpStatus.OK);
     		}
      }
 	 
