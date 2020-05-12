@@ -60,12 +60,14 @@ public class BookingServiceimpl implements Bookingservice {
 	 public Booking addBooking(Booking booking, String username, int scheduledflightid)
 	    {
 		Scheduledflight sf=sfdao.findById(scheduledflightid).get();
+		int fare=(booking.getNoOfPassengers())*(sf.getTicketcost());
 		Userdata ud=udao.findById(username).get();
 		if(sf==null||ud==null)
 			return null;
 		if(booking.getScheduledflight()==null || booking.getUsername()==null)
 		{
 			Booking b=bdao.save(booking);
+			b.setTicketCost(fare);
 			b.setScheduledflight(sf);
 			List<Booking> book=new ArrayList<Booking>();
 			book.add(b);

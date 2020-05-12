@@ -47,7 +47,7 @@ public class AdminController {
     {
    	 Userdata  e= userservice.addUser(user);
    		if (e == null) {
-   			throw new IdNotFoundException("Enter Valid Id");
+   			throw new IdNotFoundException("Enter Valid Username");
    		} else {
    			return new ResponseEntity<String>("User created successfully", new HttpHeaders(), HttpStatus.OK);
    		}

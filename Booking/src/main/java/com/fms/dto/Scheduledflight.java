@@ -31,7 +31,7 @@ public class Scheduledflight implements Serializable {
 	@Column(name="available_seats")
 	private int availableSeats;
 	@Column(name="ticket_cost")
-	private long ticketcost;
+	private int ticketcost;
 	
 	
 	@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
@@ -60,7 +60,7 @@ public class Scheduledflight implements Serializable {
 		
 	}
 
-	public Scheduledflight(int scheduledflightid, int availableSeats, long ticketcost, Flight flight,
+	public Scheduledflight(int scheduledflightid, int availableSeats, int ticketcost, Flight flight,
 			Airport sourceairport, Airport destinationairport, String date1, LocalTime arrivaltime,
 			LocalTime departuretime) {
 		super();
@@ -91,11 +91,11 @@ public class Scheduledflight implements Serializable {
 		this.availableSeats = availableSeats;
 	}
 
-	public long getTicketcost() {
+	public int getTicketcost() {
 		return ticketcost;
 	}
 
-	public void setTicketcost(long ticketcost) {
+	public void setTicketcost(int ticketcost) {
 		this.ticketcost = ticketcost;
 	}
 
