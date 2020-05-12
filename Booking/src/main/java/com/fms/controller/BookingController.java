@@ -92,10 +92,10 @@ public class BookingController {
 		    	
 		     }
 		
-	     @PostMapping(value="/addPassenger/{bid}")
-	     public List<Passenger> addPassenger(@RequestBody List<Passenger> p, @PathVariable String bid)
+	     @PostMapping(value="/addPassenger/{bookingid}")
+	     public List<Passenger> addPassenger(@RequestBody List<Passenger> p, @PathVariable String bookingid)
 	     {
-	    	return  bookingservice.addPassenger(p,bid);
+	    	return  bookingservice.addPassenger(p,bookingid);
 	    	
 	    	 
 	     }
