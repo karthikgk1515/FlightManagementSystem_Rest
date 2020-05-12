@@ -28,7 +28,7 @@ public class UserService implements UserServiceI
 
     
      @Transactional
-     public String LoginUser(Userdata u)
+     public String loginUser(Userdata u)
      {
     	String flag=null;
      	String usertype=udao.findByusertype(u.getUsername(),u.getUserpassword());

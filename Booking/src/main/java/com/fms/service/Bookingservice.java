@@ -25,6 +25,6 @@ public interface Bookingservice {
     public void deletePassenger(int bookingid);
     public Userdata viewUser(String username);
     public List<Airport> viewAirport();
-	public String checkavailability(int noofpassengers, int availableseats,int scheduledflightid);
-    public String updateseats(Booking deletebooking,int noofpassengers);
+	public String checkAvailability(int noofpassengers, int availableseats,int scheduledflightid);
+    public String updateSeats(Booking deletebooking,int noofpassengers);
 }

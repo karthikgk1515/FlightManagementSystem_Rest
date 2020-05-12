@@ -49,16 +49,16 @@ public class AdminController {
    		if (e == null) {
    			throw new IdNotFoundException("Enter Valid Username");
    		} else {
-   			return new ResponseEntity<String>("User created successfully", new HttpHeaders(), HttpStatus.OK);
+   			return new ResponseEntity<>("User created successfully", new HttpHeaders(), HttpStatus.OK);
    		}
     }
     
     @PutMapping("/loginUser")
-	public String LoginUser(@RequestBody Userdata u)
+	public String loginUser(@RequestBody Userdata u)
 	 {
 	 		
- 		 String flag=userservice.LoginUser(u);
- 		 return flag;
+ 		 return userservice.loginUser(u);
+ 		 
 	 }
     
 	@PostMapping("/addflight")
@@ -85,7 +85,7 @@ public class AdminController {
 	 @DeleteMapping("/deleteFlight/{flightnumber}")
      public String deleteFlight(@PathVariable int flightnumber)
      {
-		 System.out.println(flightnumber);
+		 
     	 flightService.deleteFlight(flightnumber);
     	 return "Flight Details Deleted";
      }
@@ -106,7 +106,7 @@ public class AdminController {
     		if (sfg1 == null) {
     			throw new IdNotFoundException("Enter Valid Id");
     		} else {
-    			return new ResponseEntity<String>("Flight details added successfully", new HttpHeaders(), HttpStatus.OK);
+    			return new ResponseEntity<>("Flight details added successfully", new HttpHeaders(), HttpStatus.OK);
     		}
      }
 	 
@@ -120,7 +120,7 @@ public class AdminController {
 	 @DeleteMapping("/deletescheduledflight/{scheduledflightid}")
 	 public String deleteScheduledFlight(@PathVariable int scheduledflightid)
      {
-		 System.out.println(scheduledflightid);
+		
     	 scheduleservice.deleteScheduledFlight(scheduledflightid);
     	 return "Scheduled flight Details Deleted";
      }

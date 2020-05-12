@@ -40,7 +40,6 @@ public class ScheduledflightService implements ScheduledflightServiceI  {
 		Flight f=fdao.findById(flightnumber).get();
     	Airport a=airportdao.findByairportName(source);
     	Airport a1=airportdao.findByairportName(destination);
-    	System.out.println(f+" "+a+" "+a1 );
     	if(f==null||a==null||a1==null)
     		return null;
     	if(schedule.getFlight()==null||schedule.getSourceairport()==null||schedule.getDestinationairport()==null)
@@ -70,7 +69,7 @@ public class ScheduledflightService implements ScheduledflightServiceI  {
     		sfg.setFlight(f);
     		sfg.setSourceairport(a);
     		sfg.setDestinationairport(a1);
-    		System.out.println(sfg);
+    		
     		
     	}
     	return sfg;}
@@ -114,8 +113,7 @@ public class ScheduledflightService implements ScheduledflightServiceI  {
 	@Transactional
 	public Airport getAirport(String airportName)
 	{
-		Airport airport=airportdao.findByairportName(airportName);
-		return airport;
+		return airportdao.findByairportName(airportName);
 	}
 
 

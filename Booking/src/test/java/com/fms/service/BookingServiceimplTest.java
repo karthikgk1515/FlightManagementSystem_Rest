@@ -1,4 +1,4 @@
-package com.fms;
+package com.fms.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
@@ -24,7 +24,7 @@ import com.fms.repository.PassengerRepository;
 @SpringBootTest
 class BookingApplicationTests {
 
-/*	@Mock
+	@Mock
 	private BookingRepository bookingDao;
 	
 	@InjectMocks
@@ -112,6 +112,7 @@ class BookingApplicationTests {
 		verify(pdao,times(1)).deleteById(3);
 	}
 
-*/
+
 
 }
+

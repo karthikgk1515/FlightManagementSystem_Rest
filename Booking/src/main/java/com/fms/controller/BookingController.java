@@ -45,8 +45,8 @@ public class BookingController {
 
 		@GetMapping("/booking/{source}/{destination}/{date}")
 		public List<Scheduledflight> bookFlight(@PathVariable String source, @PathVariable String destination,@PathVariable String date) {
-			List<Scheduledflight> flight1 = bookingservice.availableflights(source, destination,date);
-			return flight1;
+			return bookingservice.availableflights(source, destination,date);
+			
 		}
 
 		   @PostMapping(value="/addBooking/{username}/{scheduledflightid}")
@@ -88,15 +88,15 @@ public class BookingController {
 		   @GetMapping(value="/getbooking/{username}",produces="application/json")
 		     public List<Booking> getbooking(@PathVariable String username)
 		     {
-		    	 List<Booking> booking=bookingservice.getbooking(username);
-		    	 return booking;
+		    	 return bookingservice.getbooking(username);
+		    	
 		     }
 		
 	     @PostMapping(value="/addPassenger/{bid}")
 	     public List<Passenger> addPassenger(@RequestBody List<Passenger> p, @PathVariable String bid)
 	     {
-	    	List<Passenger> pass= bookingservice.addPassenger(p,bid);
-	    	return pass;
+	    	return  bookingservice.addPassenger(p,bid);
+	    	
 	    	 
 	     }
 	     
@@ -121,12 +121,12 @@ public class BookingController {
 	     
 	     @GetMapping(value = "/checkavailability/{noofpassengers}/{availableseats}/{scheduledflightid}")
 			public String checkavailability(@PathVariable int noofpassengers, @PathVariable int availableseats, @PathVariable int scheduledflightid) {
-				return bookingservice.checkavailability(noofpassengers,availableseats,scheduledflightid);
+				return bookingservice.checkAvailability(noofpassengers,availableseats,scheduledflightid);
 			}
 	 	
 	 	@PutMapping(value = "/updateseats/{noofpassengers}")
 		public void updateseats(@RequestBody Booking deletebooking ,@PathVariable int noofpassengers) {
-			 bookingservice.updateseats(deletebooking,noofpassengers);
+			 bookingservice.updateSeats(deletebooking,noofpassengers);
 		}
 
 }

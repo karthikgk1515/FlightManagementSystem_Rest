@@ -51,7 +51,7 @@ public class Scheduledflight implements Serializable {
 	@NotFound(action = NotFoundAction.IGNORE)
 	private Airport destinationairport;
 	
-	public String date1;
+	private String date1;
 
 	private LocalTime arrivaltime;
 	private LocalTime departuretime;

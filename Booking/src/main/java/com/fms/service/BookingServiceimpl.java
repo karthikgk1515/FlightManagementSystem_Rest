@@ -40,14 +40,14 @@ public class BookingServiceimpl implements Bookingservice {
 	
 	@Transactional
 	public List<Scheduledflight> viewScheduledflight() {
-		List<Scheduledflight> flights= sfdao.findAll();
-		return flights;
+		return sfdao.findAll();
+		
 		
 	}
 	@Transactional
 	public List<Scheduledflight> availableflights(String source,String destination, String date1) {
-		List<Scheduledflight> flights1=sfdao.availableflights(source,destination,date1);
-		return flights1;
+		return sfdao.availableflights(source,destination,date1);
+		
 	}
 	@Transactional
 	public String updateSeats(Scheduledflight flight,Booking book) {
@@ -69,7 +69,7 @@ public class BookingServiceimpl implements Bookingservice {
 			Booking b=bdao.save(booking);
 			b.setTicketCost(cost);
 			b.setScheduledflight(sf);
-			List<Booking> book=new ArrayList<Booking>();
+			List<Booking> book=new ArrayList<>();
 			book.add(b);
 			ud.setBooking(book);
 			return b;
@@ -87,13 +87,13 @@ public Booking modifyBooking(Booking booking)
 
 @Transactional
 public List<Booking> viewBooking() {
-	List<Booking> list= bdao.findAll();
-	return list;
+	return bdao.findAll();
+	
 }
 	@Transactional
 	public Booking viewBooking(String bookingId) {
-		Booking booking= bdao.findById(bookingId).get();
-		return booking;
+		return  bdao.findById(bookingId).get();
+		
 	}
 	
 	@Transactional
@@ -108,8 +108,8 @@ public List<Booking> viewBooking() {
 	long min=100000000;
 	long max=999999999;
     long x = (long) ((Math.random()*((max-min)+1))+min);
-    String random=Long.toString(x);
-    return random;
+    return Long.toString(x);
+   
 	}
 	
 	  @Transactional
@@ -142,8 +142,8 @@ public List<Booking> viewBooking() {
 	     }
 		@Transactional
 		public Userdata viewUser(String username) {
-			Userdata ud=udao.findById(username).get();
-			return ud;
+			return udao.findById(username).get();
+			
 		}
 		
 		@Transactional
@@ -155,12 +155,12 @@ public List<Booking> viewBooking() {
 		@Transactional
 	    public List<Booking> getbooking(String username)
 	    {
-			List<Booking> booking=bdao.findBybooking(username);
-			return booking;
+			return bdao.findBybooking(username);
+			
 	    }
 	     
 		@Transactional
-		public String checkavailability(int noofpassengers, int availableseats,int scheduledflightid)
+		public String checkAvailability(int noofpassengers, int availableseats,int scheduledflightid)
 		{
 			if(noofpassengers<=availableseats)
 			{
@@ -173,7 +173,7 @@ public List<Booking> viewBooking() {
 		}
 	
 		@Transactional
-		public String updateseats(Booking deletebooking,int noofpassengers)
+		public String updateSeats(Booking deletebooking,int noofpassengers)
 		{
 			int availableseats=deletebooking.getScheduledflight().getAvailableSeats();
 			int scheduledflightid=deletebooking.getScheduledflight().getScheduledflightid();

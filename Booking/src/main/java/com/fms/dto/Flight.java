@@ -1,5 +1,7 @@
 package com.fms.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Flight")
 
-public class Flight  {
+public class Flight implements Serializable {
 	@Id
 	@Column(name="flight_number")
 	private int flightNumber;

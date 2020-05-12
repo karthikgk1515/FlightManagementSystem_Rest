@@ -31,7 +31,7 @@ public class Booking {
 	
 	@OneToMany
 	@JoinColumn(name="booking_details")
-	private List<Passenger> passenger= new ArrayList<Passenger>();
+	private List<Passenger> passenger= new ArrayList<>();
 
 	@OneToOne
     @JoinColumn(name="scheduledflight_id")
