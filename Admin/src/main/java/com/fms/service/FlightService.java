@@ -29,7 +29,7 @@ public class FlightService implements FlightServiceI {
 			
 			if(result){
 				flightDao.save(flight);
-				return "updated flight";
+				return "Flight details updated successfully";
 			}else{
 				return "Id not exits";
 			}

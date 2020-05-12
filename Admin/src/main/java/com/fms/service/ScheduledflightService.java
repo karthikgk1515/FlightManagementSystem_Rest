@@ -40,6 +40,7 @@ public class ScheduledflightService implements ScheduledflightServiceI  {
 		Flight f=fdao.findById(flightnumber).get();
     	Airport a=airportdao.findByairportName(source);
     	Airport a1=airportdao.findByairportName(destination);
+    	System.out.println(f+" "+a+" "+a1 );
     	if(f==null||a==null||a1==null)
     		return null;
     	if(schedule.getFlight()==null||schedule.getSourceairport()==null||schedule.getDestinationairport()==null)

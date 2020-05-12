@@ -66,7 +66,7 @@ public class AdminController {
 		Flight f=flightService.addFlight(flight);
 		if(f!=null)
 		{
-			return "Flight details are stored";
+			return "Flight details are added";
 		}
 		else
 			throw new FlightNotFoundException("Invalid flight details");
