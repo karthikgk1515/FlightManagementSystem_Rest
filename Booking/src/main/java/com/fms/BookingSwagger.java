@@ -15,7 +15,7 @@ public class BookingSwagger {
 
 	@Bean
 	public Docket postsApi() {
-		return new Docket(DocumentationType.SWAGGER_2). apiInfo(metadata()).select().paths(regex("/admin.*")).build();
+		return new Docket(DocumentationType.SWAGGER_2). apiInfo(metadata()).select().paths(regex("/booking.*")).build();
 	}
 
 	@SuppressWarnings("deprecation")

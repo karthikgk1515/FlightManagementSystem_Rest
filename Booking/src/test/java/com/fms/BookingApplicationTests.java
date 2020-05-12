@@ -24,7 +24,7 @@ import com.fms.repository.PassengerRepository;
 @SpringBootTest
 class BookingApplicationTests {
 
-	@Mock
+/*	@Mock
 	private BookingRepository bookingDao;
 	
 	@InjectMocks
@@ -112,6 +112,6 @@ class BookingApplicationTests {
 		verify(pdao,times(1)).deleteById(3);
 	}
 
-
+*/
 
 }
