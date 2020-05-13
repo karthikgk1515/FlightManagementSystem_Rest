@@ -40,6 +40,11 @@ public class Userdata {
 		
 	}
 
+	public Userdata(String username, String password) {
+		this.username=username;
+		this.userpassword=password;
+	}
+
 	public int getUserid() {
 		return userid;
 	}

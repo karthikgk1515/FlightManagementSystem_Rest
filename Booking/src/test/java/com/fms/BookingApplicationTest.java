@@ -7,10 +7,12 @@ import static org.mockito.Mockito.verify;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fms.dto.Booking;
@@ -22,7 +24,7 @@ import com.fms.dto.Passenger;
 import com.fms.repository.PassengerRepository;
 
 @SpringBootTest
-class BookingApplicationTests {
+class BookingApplicationTest {
 
 	@Mock
 	private BookingRepository bookingDao;
@@ -30,6 +32,11 @@ class BookingApplicationTests {
 	@InjectMocks
 	private BookingServiceimpl bookingService;
 	
+	@Before
+	public void setup()
+	{
+		MockitoAnnotations.initMocks(this);
+	}
 	@Test
 	public void testfindAllBooking() {
 		List<Booking> bookingList=new ArrayList<>();

@@ -19,7 +19,7 @@ public class Booking {
 	@Id
 	@Column(name="booking_id")
 	private String bookingId;
-	
+
 	@Column(name="booking_date")
 	private String bookingDate;
 	@Column(name="ticket_cost")
