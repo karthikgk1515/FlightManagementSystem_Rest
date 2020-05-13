@@ -58,7 +58,7 @@ class AdminApplicationTest {
 	
     @Test
   public void testLoginUser(){
-   Userdata user = new Userdata("karthik","karthik@12");
+   Userdata user = new Userdata("karthik1","karthik@12");
   when(udao.findById(user.getUsername())).thenReturn(Optional.of(user));  		
    String result = userService.loginUser(user);
 		assertEquals(true,result);      		

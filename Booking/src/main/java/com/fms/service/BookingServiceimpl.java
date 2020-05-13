@@ -38,12 +38,7 @@ public class BookingServiceimpl implements Bookingservice {
 	@Autowired
 	AirportRepository adao;
 	
-	@Transactional
-	public List<Scheduledflight> viewScheduledflight() {
-		return sfdao.findAll();
-		
-		
-	}
+
 	@Transactional
 	public List<Scheduledflight> availableflights(String source,String destination, String date1) {
 		return sfdao.availableflights(source,destination,date1);
@@ -112,11 +107,6 @@ public List<Booking> viewBooking() {
    
 	}
 	
-	  @Transactional
-	     public List<Passenger> viewPassenger()
-	     {
-	    	 return pdao.findAll();
-	     }
 	     
 	     @Transactional
 	     public List<Passenger> addPassenger(List<Passenger> passenger, String bookingid)
@@ -135,11 +125,7 @@ public List<Booking> viewBooking() {
 	    	 else
 	    		 throw new IdNotFoundException("passenger not found");
 	     }
-	     @Transactional
-	     public void deletePassenger(int bookingid)
-	     {
-	    	 pdao.deleteById(bookingid);
-	     }
+
 		@Transactional
 		public Userdata viewUser(String username) {
 			return udao.findById(username).get();

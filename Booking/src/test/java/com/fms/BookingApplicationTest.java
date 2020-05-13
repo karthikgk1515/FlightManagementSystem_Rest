@@ -17,9 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fms.dto.Booking;
 import com.fms.repository.BookingRepository;
-import com.fms.repository.ScheduledflightRepository;
 import com.fms.service.BookingServiceimpl;
-import com.fms.service.Bookingservice;
 import com.fms.dto.Passenger;
 import com.fms.repository.PassengerRepository;
 

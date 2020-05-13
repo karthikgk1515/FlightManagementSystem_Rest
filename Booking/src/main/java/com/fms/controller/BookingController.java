@@ -38,10 +38,7 @@ public class BookingController {
 	    	 return bookingservice.viewUser(username);
 	     }
 
-		@GetMapping("/getflights")
-		public List<Scheduledflight> viewScheduledflight() {
-			return bookingservice.viewScheduledflight();
-		}
+		
 
 		@GetMapping("/booking/{source}/{destination}/{date}")
 		public List<Scheduledflight> bookFlight(@PathVariable String source, @PathVariable String destination,@PathVariable String date) {
@@ -61,7 +58,7 @@ public class BookingController {
 			return bookingservice.viewBooking();
 		}
 
-		@GetMapping("/get/{bookingId}")
+	@GetMapping("/get/{bookingId}")
 		public Booking displayOneList(@PathVariable String bookingId) {
 			return bookingservice.viewBooking(bookingId);
 		}
@@ -100,18 +97,7 @@ public class BookingController {
 	    	 
 	     }
 	     
-	     @GetMapping(value="/getAllPassenger",produces="application/json")
-	     public List<Passenger> viewPassenger()
-	     {
-	    	 return bookingservice.viewPassenger();
-	     }
-	     
-	     @DeleteMapping("/deletePassenger/{passengeruin}")
-	     public String deletePassenger(@PathVariable int passengeruin)
-	     {
-	    	 bookingservice.deletePassenger(passengeruin);
-	    	 return "User Details Deleted";
-	     }
+	  
 	     
 	     @GetMapping(value="/getAllAirports",produces="application/json")
 	     public List<Airport> viewAirport()
