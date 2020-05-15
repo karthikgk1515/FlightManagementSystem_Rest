@@ -2,6 +2,7 @@ package com.fms.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -40,7 +41,7 @@ public class BookingServiceimpl implements Bookingservice {
 	
 
 	@Transactional
-	public List<Scheduledflight> availableflights(String source,String destination, String date1) {
+	public Set<Scheduledflight> availableflights(String source,String destination, String date1) {
 		return sfdao.availableflights(source,destination,date1);
 		
 	}
@@ -74,22 +75,6 @@ public class BookingServiceimpl implements Bookingservice {
 	     
 	    }
 
-@Transactional
-public Booking modifyBooking(Booking booking)
-   {
-    return  bdao.save(booking);
-	}
-
-@Transactional
-public List<Booking> viewBooking() {
-	return bdao.findAll();
-	
-}
-	@Transactional
-	public Booking viewBooking(String bookingId) {
-		return  bdao.findById(bookingId).get();
-		
-	}
 	
 	@Transactional
 	public void deleteBooking(String bookingid)
@@ -126,11 +111,6 @@ public List<Booking> viewBooking() {
 	    		 throw new IdNotFoundException("passenger not found");
 	     }
 
-		@Transactional
-		public Userdata viewUser(String username) {
-			return udao.findById(username).get();
-			
-		}
 		
 		@Transactional
 		public List<Airport> viewAirport()

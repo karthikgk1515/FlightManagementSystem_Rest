@@ -2,6 +2,7 @@ package com.fms.controller;
 
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fms.dto.Booking;
 import com.fms.dto.Scheduledflight;
-import com.fms.dto.Userdata;
 import com.fms.dto.Airport;
 import com.fms.dto.Passenger;
 import com.fms.service.BookingServiceimpl;
@@ -29,23 +29,16 @@ public class BookingController {
 
 		@Autowired
 		BookingServiceimpl bookingservice;
+	
 		
-
-		
-		 @GetMapping(value="/getUser/{username}",produces="application/json")
-	     public Userdata viewUser(@PathVariable String username)
-	     {
-	    	 return bookingservice.viewUser(username);
-	     }
-
-		
-
+		// get all available flights
 		@GetMapping("/booking/{source}/{destination}/{date}")
-		public List<Scheduledflight> bookFlight(@PathVariable String source, @PathVariable String destination,@PathVariable String date) {
+		public Set<Scheduledflight> bookFlight(@PathVariable String source, @PathVariable String destination,@PathVariable String date) {
 			return bookingservice.availableflights(source, destination,date);
 			
 		}
-
+		
+		// add booking
 		   @PostMapping(value="/addBooking/{username}/{scheduledflightid}")
 		     public String addBookingDetails(@RequestBody Booking booking,@PathVariable String username, @PathVariable int scheduledflightid)
 		     {
@@ -53,22 +46,9 @@ public class BookingController {
 		 		return "Booking done successfully";
 		    	 
 		     }
-		@GetMapping("/getAllBookings")
-		public List<Booking> displayList() {
-			return bookingservice.viewBooking();
-		}
+	
 
-	@GetMapping("/get/{bookingId}")
-		public Booking displayOneList(@PathVariable String bookingId) {
-			return bookingservice.viewBooking(bookingId);
-		}
-
-		@PutMapping(value = "/update/{bookingId}")
-		public String updateBookingDetails(@RequestBody() Booking booking) {
-			bookingservice.modifyBooking(booking);
-			return "Booking Details updated ";
-		}
-		
+		//delete booking
 		@DeleteMapping("/deleteBooking/{bookingId}")
 		  public String deleteBookingDetails(@PathVariable String bookingId)
 		  {
@@ -76,12 +56,14 @@ public class BookingController {
 		 	 return "cancelled tickets";
 		  }
 		
+		//get booking id
 		@GetMapping(value="/getBookingid",produces="application/json")
 		  public String getbookingid()
 		    {
 		   	 return bookingservice.getbookingid();
 		    }
 		
+		//get booking for particular username
 		   @GetMapping(value="/getbooking/{username}",produces="application/json")
 		     public List<Booking> getbooking(@PathVariable String username)
 		     {
@@ -89,6 +71,7 @@ public class BookingController {
 		    	
 		     }
 		
+		   //add passengers
 	     @PostMapping(value="/addPassenger/{bookingid}")
 	     public List<Passenger> addPassenger(@RequestBody List<Passenger> p, @PathVariable String bookingid)
 	     {
@@ -98,18 +81,20 @@ public class BookingController {
 	     }
 	     
 	  
-	     
+	     //view all airports 
 	     @GetMapping(value="/getAllAirports",produces="application/json")
 	     public List<Airport> viewAirport()
 	     {
 	    	 return bookingservice.viewAirport();
 	     }
 	     
+	     // check availability of seats
 	     @GetMapping(value = "/checkavailability/{noofpassengers}/{availableseats}/{scheduledflightid}")
 			public String checkavailability(@PathVariable int noofpassengers, @PathVariable int availableseats, @PathVariable int scheduledflightid) {
 				return bookingservice.checkAvailability(noofpassengers,availableseats,scheduledflightid);
 			}
 	 	
+	     // update seats after cancellation of tickets
 	 	@PutMapping(value = "/updateseats/{noofpassengers}")
 		public void updateseats(@RequestBody Booking deletebooking ,@PathVariable int noofpassengers) {
 			 bookingservice.updateSeats(deletebooking,noofpassengers);

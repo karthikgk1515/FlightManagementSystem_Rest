@@ -1,7 +1,7 @@
 package com.fms.repository;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,7 +14,7 @@ import com.fms.dto.Scheduledflight;
 public interface ScheduledflightRepository  extends JpaRepository<Scheduledflight,Serializable>
 {
 	@Query("select sf,f from Scheduledflight sf, Flight f where  sf.sourceairport.airportName=?1 and sf.destinationairport.airportName=?2 and sf.date1=?3")
-	List<Scheduledflight> availableflights(String source, String destination, String date1);
+	Set<Scheduledflight> availableflights(String source, String destination, String date1);
 	
 	@Modifying
 	@Query("update Scheduledflight sf set sf.availableSeats=?2 where sf.scheduledflightid=?1")

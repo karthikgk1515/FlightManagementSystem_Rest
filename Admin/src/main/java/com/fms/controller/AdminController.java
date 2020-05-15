@@ -28,7 +28,7 @@ import com.fms.service.UserService;
 
 @RestController
 @RequestMapping("/admin")
-@CrossOrigin(origins="http://localhost:4200", maxAge=3600)
+@CrossOrigin(origins="http://localhost:4200")
 public class AdminController {
 	
 
@@ -42,6 +42,7 @@ public class AdminController {
 	@Autowired
 	private UserService  userservice;
 	
+	//add user
     @PostMapping(value="/addUser")
     public ResponseEntity<String> addUser(@RequestBody Userdata user)
     {
@@ -53,6 +54,7 @@ public class AdminController {
    		}
     }
     
+    //login user
     @PutMapping("/loginUser")
 	public String loginUser(@RequestBody Userdata u)
 	 {
@@ -61,6 +63,7 @@ public class AdminController {
  		 
 	 }
     
+    //add flight details
 	@PostMapping("/addflight")
 	public String addFlight(@RequestBody Flight flight) {
 		Flight f=flightService.addFlight(flight);
@@ -72,16 +75,20 @@ public class AdminController {
 			throw new FlightNotFoundException("Invalid flight details");
 	}
 	
+	//get all flights
 	@GetMapping(value="/getAllFlight",produces="application/json")
     public List<Flight> viewFlight()
     {
    	 return flightService.viewFlight();
     }
 	
+	//update flight
 	@PutMapping("/updateFlight")
     public String modifyFlight(@RequestBody Flight flight){
 		return flightService.updateFlight(flight);
 	}
+	
+	//delete flight
 	 @DeleteMapping("/deleteFlight/{flightnumber}")
      public String deleteFlight(@PathVariable int flightnumber)
      {
@@ -89,6 +96,8 @@ public class AdminController {
     	 flightService.deleteFlight(flightnumber);
     	 return "Flight Details Deleted";
      }
+	 
+	 //get particular flight using flight number
 	 @GetMapping(value="/getflight/{flightnumber}",produces="application/json")
      public Flight viewFlight(@PathVariable int flightnumber)
      {
@@ -97,7 +106,7 @@ public class AdminController {
      
 	 
 	 
-
+	 // add schedule to a flight
      @PostMapping(value="/addScheduledFlight/{flightnumber}/{sourceairport}/{destinationairport}")
      public ResponseEntity<String> addScheduledFlight(@RequestBody Scheduledflight sf, @PathVariable int flightnumber,@PathVariable String sourceairport, @PathVariable String destinationairport)
      {
@@ -110,6 +119,7 @@ public class AdminController {
     		}
      }
 	 
+     // update scheduled flight
 	 @PutMapping("/updatescheduledflight/{flightnumber}/{sourceairport}/{destinationairport}")
 		public String updateFlight( @RequestBody Scheduledflight schedule,@PathVariable int flightnumber,@PathVariable String sourceairport, @PathVariable String destinationairport) {
 			
@@ -117,6 +127,7 @@ public class AdminController {
 				 return "Scheduled flight details are updated";
 	    }
 	 
+	 //delete scheduled flight
 	 @DeleteMapping("/deletescheduledflight/{scheduledflightid}")
 	 public String deleteScheduledFlight(@PathVariable int scheduledflightid)
      {
@@ -125,12 +136,14 @@ public class AdminController {
     	 return "Scheduled flight Details Deleted";
      }
 	 
+	 //get all scheduled flights
 	 @GetMapping("/getAllscheduledflights")
 	 public List<Scheduledflight> viewScheduledFlight()
 	    {
 	   	 return scheduleservice.viewScheduledFlight();
 	    }
 	 
+	 //get particular scheduled flight using scheduled flight id
 	 @GetMapping(value="/getScheduledFlight/{scheduledid}",produces="application/json")
      public Scheduledflight viewScheduledFlight(@PathVariable int scheduledid)
      {
@@ -138,7 +151,7 @@ public class AdminController {
      }
 	 
 	
-	 
+	 // add airport
 	 @PostMapping("/Addairport")
 		public String addAirport(@RequestBody Airport airport) {
 		 
